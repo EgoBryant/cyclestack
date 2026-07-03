@@ -1,1 +1,16 @@
-/build
+.gradle/
+build/
+app/build/
+local.properties
+*.iml
+
+.idea/caches/
+.idea/libraries/
+.idea/shelf/
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/usage.statistics.xml
+.idea/dictionaries/
+.idea/httpRequests/
+.idea/copilot/
+.idea/sonarlint/
