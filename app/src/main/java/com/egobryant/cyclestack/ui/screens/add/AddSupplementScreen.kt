@@ -52,14 +52,14 @@ fun AddSupplementScreen(onBackClick: () -> Unit = {}) {
                 Spacer(modifier = Modifier.height(AppDimensions.Medium))
                 
                 ScreenHeader(
-                    title = "New Supplement",
-                    subtitle = "Fill in the details to start tracking your new supplement routine."
+                    title = "Новая добавка",
+                    subtitle = "Заполните данные, чтобы начать отслеживать прием."
                 )
 
                 SupplementTextField(
                     value = name,
                     onValueChange = { name = it },
-                    label = "Supplement name"
+                    label = "Название"
                 )
 
                 Spacer(modifier = Modifier.height(AppDimensions.FieldSpacing))
@@ -67,7 +67,7 @@ fun AddSupplementScreen(onBackClick: () -> Unit = {}) {
                 SupplementTextField(
                     value = description,
                     onValueChange = { description = it },
-                    label = "Description (Optional)"
+                    label = "Описание (опционально)"
                 )
 
                 Spacer(modifier = Modifier.height(AppDimensions.FieldSpacing))
@@ -75,7 +75,7 @@ fun AddSupplementScreen(onBackClick: () -> Unit = {}) {
                 SupplementTextField(
                     value = dosage,
                     onValueChange = { dosage = it },
-                    label = "Dosage (e.g. 500mg)"
+                    label = "Дозировка (напр. 500 мг)"
                 )
 
                 Spacer(modifier = Modifier.height(AppDimensions.FieldSpacing))
@@ -83,16 +83,14 @@ fun AddSupplementScreen(onBackClick: () -> Unit = {}) {
                 SupplementTextField(
                     value = time,
                     onValueChange = { time = it },
-                    label = "Time of day"
+                    label = "Время приема"
                 )
 
-                // Extra space for the button at the bottom
                 Spacer(modifier = Modifier.height(AppDimensions.ButtonHeight + AppDimensions.Large * 2))
             }
 
-            // Pinned Save Button
             PrimaryButton(
-                text = "Save Supplement",
+                text = "Сохранить",
                 onClick = { /* TODO: Save */ },
                 modifier = Modifier
                     .align(Alignment.BottomCenter)

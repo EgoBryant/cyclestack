@@ -5,23 +5,20 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.egobryant.cyclestack.data.model.SupplementDose
+import com.egobryant.cyclestack.ui.components.AppTopBar
+import com.egobryant.cyclestack.ui.components.ScreenHeader
 import com.egobryant.cyclestack.ui.components.SupplementDoseCard
+import com.egobryant.cyclestack.ui.theme.AppDimensions
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TodayScreen() {
+fun TodayScreen(onAddSupplementClick: () -> Unit = {}) {
     // Mock data
     val doses = listOf(
         SupplementDose("L-Theanine", "2 capsules", "Morning", "After breakfast"),
@@ -31,12 +28,10 @@ fun TodayScreen() {
 
     Scaffold(
         topBar = {
-            TopAppBar(
-                title = { Text("CycleStack") }
-            )
+            AppTopBar(title = "CycleStack")
         },
         floatingActionButton = {
-            FloatingActionButton(onClick = { /* TODO: Functionality coming later */ }) {
+            FloatingActionButton(onClick = onAddSupplementClick) {
                 Text("+", fontSize = 24.sp)
             }
         }
@@ -44,14 +39,12 @@ fun TodayScreen() {
         Column(
             modifier = Modifier
                 .padding(innerPadding)
-                .padding(horizontal = 16.dp)
+                .padding(horizontal = AppDimensions.ScreenPadding)
                 .fillMaxSize()
         ) {
-            Text(
-                text = "Today",
-                style = MaterialTheme.typography.headlineLarge,
-                fontWeight = FontWeight.Bold,
-                modifier = Modifier.padding(vertical = 16.dp)
+            ScreenHeader(
+                title = "Сегодня",
+                modifier = Modifier.padding(top = AppDimensions.Medium)
             )
 
             LazyColumn {
