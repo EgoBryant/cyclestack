@@ -4,7 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import com.egobryant.cyclestack.ui.screens.today.TodayScreen
+import com.egobryant.cyclestack.ui.screens.add.AddSupplementScreen
 import com.egobryant.cyclestack.ui.theme.CycleStackTheme
 
 class MainActivity : ComponentActivity() {
@@ -13,7 +13,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             CycleStackTheme {
-                TodayScreen()
+                AddSupplementScreen()
             }
         }
     }
