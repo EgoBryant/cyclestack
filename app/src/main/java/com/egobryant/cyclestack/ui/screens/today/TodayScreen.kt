@@ -11,21 +11,17 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.sp
-import com.egobryant.cyclestack.data.model.SupplementDose
+import com.egobryant.cyclestack.data.model.Supplement
 import com.egobryant.cyclestack.ui.components.AppTopBar
 import com.egobryant.cyclestack.ui.components.ScreenHeader
 import com.egobryant.cyclestack.ui.components.SupplementDoseCard
 import com.egobryant.cyclestack.ui.theme.AppDimensions
 
 @Composable
-fun TodayScreen(onAddSupplementClick: () -> Unit = {}) {
-    // Mock data
-    val doses = listOf(
-        SupplementDose("L-Theanine", "2 capsules", "Morning", "After breakfast"),
-        SupplementDose("Lion's Mane", "1 capsule", "Morning", "With water"),
-        SupplementDose("Omega-3", "2 capsules", "Evening", "After dinner")
-    )
-
+fun TodayScreen(
+    supplements: List<Supplement>,
+    onAddSupplementClick: () -> Unit
+) {
     Scaffold(
         topBar = {
             AppTopBar(title = "CycleStack")
@@ -48,8 +44,8 @@ fun TodayScreen(onAddSupplementClick: () -> Unit = {}) {
             )
 
             LazyColumn {
-                items(doses) { dose ->
-                    SupplementDoseCard(dose)
+                items(supplements) { supplement ->
+                    SupplementDoseCard(supplement = supplement)
                 }
             }
         }

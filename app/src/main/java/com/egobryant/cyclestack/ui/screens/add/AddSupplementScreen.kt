@@ -17,20 +17,27 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import com.egobryant.cyclestack.data.model.DosageUnit
+import com.egobryant.cyclestack.data.model.IntakeTime
+import com.egobryant.cyclestack.data.model.Supplement
+import com.egobryant.cyclestack.data.model.SupplementForm
 import com.egobryant.cyclestack.ui.components.AppTopBar
 import com.egobryant.cyclestack.ui.components.PrimaryButton
 import com.egobryant.cyclestack.ui.components.ScreenHeader
 import com.egobryant.cyclestack.ui.components.SupplementTextField
 import com.egobryant.cyclestack.ui.theme.AppDimensions
-import com.egobryant.cyclestack.ui.theme.CycleStackTheme
 
 @Composable
-fun AddSupplementScreen(onBackClick: () -> Unit = {}) {
+fun AddSupplementScreen(
+    onBackClick: () -> Unit,
+    onSave: (Supplement) -> Unit
+) {
     var name by remember { mutableStateOf("") }
     var description by remember { mutableStateOf("") }
     var dosage by remember { mutableStateOf("") }
     var time by remember { mutableStateOf("") }
+
+    val isSaveEnabled = name.isNotBlank()
 
     Scaffold(
         containerColor = MaterialTheme.colorScheme.surface,
@@ -91,19 +98,25 @@ fun AddSupplementScreen(onBackClick: () -> Unit = {}) {
 
             PrimaryButton(
                 text = "Сохранить",
-                onClick = { /* TODO: Save */ },
+                enabled = isSaveEnabled,
+                onClick = {
+                    val newSupplement = Supplement(
+                        name = name,
+                        description = description,
+                        dosageAmount = dosage.toDoubleOrNull() ?: 0.0,
+                        dosageUnit = DosageUnit.MG,
+                        form = SupplementForm.CAPSULE,
+                        intakeAmount = 1.0,
+                        preferredIntakeTime = IntakeTime.CUSTOM,
+                        customIntakeTime = time.ifBlank { null },
+                        startDate = "01.01.2024" // Default for now
+                    )
+                    onSave(newSupplement)
+                },
                 modifier = Modifier
                     .align(Alignment.BottomCenter)
                     .padding(AppDimensions.ScreenPadding)
             )
         }
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun AddSupplementScreenPreview() {
-    CycleStackTheme {
-        AddSupplementScreen()
     }
 }
